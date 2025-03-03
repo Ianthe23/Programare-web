@@ -10,6 +10,8 @@
         <td align="center" valign="middle">
           <div>
             <form method="GET" action="">
+
+              <!--Tabel cu titlul paginii-->
               <table width="75%" cellspacing="0" frame="below">
                 <tr>
 									<th align="center" colspan="2">
@@ -18,6 +20,7 @@
 								</tr>
               </table>
 
+              <!--Tabel cu imagine si moto-->
               <table>
                 <tr>
                   <td align="left">
@@ -34,12 +37,14 @@
 
               <br>
 
+              <!--Tabelul principal-->
               <table border="1" width="75%" cellspacing="0" cellpadding="4">
                 <tr bgcolor="#B1AEDC">
                   <th colspan="4">Date personale</th>
                 </tr>
 
                 <tr>
+                  <!--Casete pentru introducerea numelui si a prenumelui-->
                   <td align="left" width="25%" bgcolor="#d3cde0">Nume</td>
                   <td width="25%">
                     <input type="text" name="nume" size="30">
@@ -51,6 +56,7 @@
                 </tr>
 
                 <tr>
+                  <!--Caseta pentru introducerea adresei-->
                   <td align="left" width="25%" bgcolor="#d3cde0">
                     Adres&#259;
                   </td>
@@ -60,9 +66,11 @@
                 </tr>
 
                 <tr>
+                  <!--Casete pentru introducerea telefonului si a email-ului-->
                   <td align="left" width="25%" bgcolor="#d3cde0">Telefon</td>
                   <td width="25%">
-                    <input type="text" name="telefon" size="30">
+                    <!--Verificam sa fie maxim 10 caractere in nr telefon-->
+                    <input type="text" name="telefon" size="30" maxlength="10">
                   </td>
                   <td align="left" width="25%" bgcolor="#d3cde0">E-mail</td>
                   <td width="25%">
@@ -71,6 +79,7 @@
                 </tr>
 
                 <tr>
+                  <!--Casete pentru introducerea datei de nastere-->
                   <td align="left" width="25%" bgcolor="#d3cde0">
                     Data na&#351;terii
                   </td>
@@ -154,6 +163,7 @@
                 </tr>
 
                 <tr>
+                  <!--Casete pentru introducerea locului de munca-->
                   <td align="left" width="25%" bgcolor="#d3cde0">
                     Loc de munc&#259;
                   </td>
@@ -163,6 +173,7 @@
                 </tr>
 
                 <tr>
+                  <!--Casete pentru introducerea ocupatiei-->
                   <td align="left" width="25%" bgcolor="#d3cde0">
                     Ocupa&#355;ie
                   </td>
@@ -189,6 +200,7 @@
                 </tr>
 
                 <tr>
+                  <!--Casete pentru introducerea studiilor-->
                   <td align="left" width="25%" bgcolor="#ede7ec">Studii</td>
                   <td colspan="2">
                     <input
@@ -237,6 +249,7 @@
                 </tr>
 
                 <tr>
+                  <!--Casete pentru verificarea activitaii ca voluntar-->
                   <td align="left" width="25%" bgcolor="#ede7ec">
                     A&#355;i mai activat ca voluntar?
                   </td>
@@ -248,6 +261,7 @@
                 </tr>
 
                 <tr>
+                  <!--Casete pentru introducerea tipului de voluntariat dorit-->
                   <td align="left" width="25%" bgcolor="#ede7ec">
                     Tip de voluntariat dorit
                   </td>
@@ -293,6 +307,7 @@
 
                 <tr>
                   <td colspan="4">
+                    <!--Liste cu tipul activitatii dorite, competentele si abilitatile-->
                     <ol type="A">
                       <li>
                         <b
@@ -350,6 +365,8 @@
                         <br>
                         <input type="checkbox" name="activitate" value="8">
                         <b>Activit&#259;&#355;i legate de suportul logistic:</b>
+
+                        <!--Lista imbricata cu activitatile enumerate mai jos-->
                         <ul>
                           <li>
                             Activit&#259;&#355;i de birou (ex: lucru cu
@@ -373,6 +390,8 @@
 
                       <li>
                         <b>Competen&#355;e:</b>
+
+                        <!--Lista imbricata cu competentele enumerate mai jos-->
                         <ol>
                           <li>
                             <b>Tehnice:</b>
@@ -384,6 +403,7 @@
                             <input type="checkbox" name="altele" value="4">
                             Altele
                             <br>
+                            <!--Am pus &nbsp; ca sa asez frumos in pagina checkboxurile-->
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
                               type="checkbox"
                               name="programare"
@@ -490,6 +510,8 @@
                           </li>
                         </ol>
                       </li>
+
+                      <!--Lista cu abilitatile enumerate mai jos-->
                       <li>
                         <b>Abilit&#259;&#355;i:</b>
                         <br>
@@ -514,6 +536,8 @@
                   <td colspan="4" align="left">
                     <b>Voluntarul:</b>
                     <br>
+
+                    <!--Lista cu regulile de respectat de catre voluntar-->
                     <ul type="square">
                       <li>
                         va presta o activitate de interes public, f&#259;r&#259;
@@ -552,6 +576,7 @@
                 </tr>
 
                 <tr>
+                  <!--Butonul de submit-->
                   <td colspan="4" align="right" bgcolor="#dbbfc5">
                     <input type="submit" value="Trimite">
                   </td>
