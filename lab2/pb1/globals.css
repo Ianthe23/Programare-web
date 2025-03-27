@@ -1,0 +1,27 @@
+.parent-div {
+  border: solid;
+  border-color: black;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.child-div {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-container {
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 200px;
+  height: auto;
+  display: block;
+}
