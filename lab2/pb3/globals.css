@@ -1,0 +1,41 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+}
+
+header {
+  background-color: red;
+  height: 100px;
+}
+
+.menu li {
+  display: inline-block;
+}
+
+.menu {
+  background-color: yellow;
+  list-style-type: none;
+  height: 25px;
+}
+
+main {
+  background-color: green;
+  min-height: calc(100% - 185px);
+}
+
+footer {
+  background-color: pink;
+  height: 60px;
+}
+
+header,
+.menu,
+footer {
+  text-align: center;
+}

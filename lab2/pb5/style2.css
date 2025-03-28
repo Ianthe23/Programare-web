@@ -1,0 +1,31 @@
+.main-div {
+  border: solid;
+  border-color: black;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.child-div {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  background-color: yellow;
+}
+
+img {
+  height: 250px;
+  display: block;
+}
+
+p {
+  margin-left: 20px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}

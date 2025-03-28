@@ -1,0 +1,45 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.input-group p {
+  margin: 0;
+  margin-bottom: 15px;
+  width: 80px;
+  text-align: right;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.box-input {
+  width: 490px;
+  margin-bottom: 10px;
+  height: 15px;
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 16px;
+  letter-spacing: 16px;
+  background-image: linear-gradient(to right, #000 1px, transparent 1px);
+  background-size: 25px 100%;
+  background-position: 0 0;
+}
+
+.box-input:focus {
+  outline: none;
+}
+
+.box-input.cnp {
+  width: 315px;
+  letter-spacing: 16px;
+  height: 15px;
+  background-size: 25px 100%;
+}

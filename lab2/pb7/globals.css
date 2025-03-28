@@ -1,0 +1,66 @@
+.dialog {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.dialog li {
+  padding: 15px 20px;
+  margin: 30px 0;
+  border-radius: 15px;
+  position: relative;
+  max-width: calc(100% - 100px);
+  margin-left: 100px;
+  background-color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.dialog li::before {
+  content: "";
+  width: 70px;
+  height: 55px;
+  position: absolute;
+  left: -85px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url("images/image.png");
+  background-size: 280px 210px;
+  background-repeat: no-repeat;
+}
+
+.dialog li::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid white;
+  filter: drop-shadow(-2px 0px 1px rgba(0, 0, 0, 0.1));
+}
+
+.alice::before {
+  background-position: -210px 2px;
+}
+
+.bob::before {
+  background-position: -3px -51px;
+}
+
+.dialog li:before {
+  z-index: 1;
+}
+
+.dialog li:after {
+  z-index: 2;
+}

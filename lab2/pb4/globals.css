@@ -1,0 +1,131 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+}
+
+#nav {
+  position: relative;
+}
+
+#nav li {
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  left: 0;
+  height: 84px;
+}
+
+#nav1 {
+  top: 0px;
+  width: 84px;
+  background: url("images/social.png") 0 -84px;
+}
+
+#nav1:hover {
+  background: url("images/social.png") 0 0;
+}
+
+#nav2 {
+  top: 84px;
+  width: 84px;
+  background: url("images/social.png") -84px -84px;
+}
+
+#nav2:hover {
+  background: url("images/social.png") -84px 0;
+}
+
+#nav3 {
+  top: 168px;
+  width: 84px;
+  background: url("images/social.png") -168px -84px;
+}
+
+#nav3:hover {
+  background: url("images/social.png") -168px 0;
+}
+
+#nav4 {
+  top: 252px;
+  width: 84px;
+  background: url("images/social.png") -252px -84px;
+}
+
+#nav4:hover {
+  background: url("images/social.png") -252px 0;
+}
+
+#nav5 {
+  top: 336px;
+  width: 84px;
+  background: url("images/social.png") -336px -84px;
+}
+
+#nav5:hover {
+  background: url("images/social.png") -336px 0;
+}
+
+#nav6 {
+  top: 420px;
+  width: 84px;
+  background: url("images/social.png") -420px -84px;
+}
+
+#nav6:hover {
+  background: url("images/social.png") -420px 0;
+}
+
+#nav7 {
+  top: 504px;
+  width: 84px;
+  background: url("images/social.png") -504px -84px;
+}
+
+#nav7:hover {
+  background: url("images/social.png") -504px 0;
+}
+
+#nav8 {
+  top: 588px;
+  width: 84px;
+  background: url("images/social.png") -588px -84px;
+}
+
+#nav8:hover {
+  background: url("images/social.png") -588px 0;
+}
+
+#nav9 {
+  top: 672px;
+  width: 84px;
+  background: url("images/social.png") -672px -84px;
+}
+
+#nav9:hover {
+  background: url("images/social.png") -672px 0;
+}
+
+#nav10 {
+  top: 756px;
+  width: 84px;
+  background: url("images/social.png") -756px -84px;
+}
+
+#nav10:hover {
+  background: url("images/social.png") -756px 0;
+}
+
+#nav11 {
+  top: 840px;
+  width: 84px;
+  background: url("images/social.png") -840px -84px;
+}
+
+#nav11:hover {
+  background: url("images/social.png") -840px 0;
+}
