@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="program2.js"></script>
+    <link rel="stylesheet" href="styles2.css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <p>Memory Game</p>
+    </div>
+
+    <div class="container">
+      <div class="game-container">
+        <div class="row">
+          <div id="cell1" class="cell" onclick="check(this)">
+            <img src="img/1.png" alt="1" />
+          </div>
+          <div id="cell2" class="cell" onclick="check(this)">
+            <img src="img/7.png" alt="7" />
+          </div>
+          <div id="cell3" class="cell" onclick="check(this)">
+            <img src="img/2.png" alt="2" />
+          </div>
+          <div id="cell4" class="cell" onclick="check(this)">
+            <img src="img/3.png" alt="3" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="cell5" class="cell" onclick="check(this)">
+            <img src="img/7.png" alt="7" />
+          </div>
+          <div id="cell6" class="cell" onclick="check(this)">
+            <img src="img/4.png" alt="4" />
+          </div>
+          <div id="cell7" class="cell" onclick="check(this)">
+            <img src="img/5.png" alt="5" />
+          </div>
+          <div id="cell8" class="cell" onclick="check(this)">
+            <img src="img/3.png" alt="3" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="cell9" class="cell" onclick="check(this)">
+            <img src="img/1.png" alt="1" />
+          </div>
+          <div id="cell10" class="cell" onclick="check(this)">
+            <img src="img/4.png" alt="4" />
+          </div>
+          <div id="cell11" class="cell" onclick="check(this)">
+            <img src="img/2.png" alt="2" />
+          </div>
+          <div id="cell12" class="cell" onclick="check(this)">
+            <img src="img/6.png" alt="6" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="cell13" class="cell" onclick="check(this)">
+            <img src="img/6.png" alt="6" />
+          </div>
+          <div id="cell14" class="cell" onclick="check(this)">
+            <img src="img/5.png" alt="5" />
+          </div>
+          <div id="cell15" class="cell" onclick="check(this)">
+            <img src="img/0.png" alt="0" />
+          </div>
+          <div id="cell16" class="cell" onclick="check(this)">
+            <img src="img/0.png" alt="0" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="win-message">
+      <div class="win-content">
+        <h2>Congratulations! 🎉</h2>
+        <button class="play-again" onclick="resetGame()">Play Again</button>
+      </div>
+    </div>
+  </body>
+</html>
