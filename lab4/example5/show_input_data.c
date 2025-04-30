@@ -2,15 +2,12 @@
 
 int main() {
     char line[1000];
-    
     printf("Content-type: text/html\n\n");
-    printf("<html><body>\n");
-    
-    // Read line by line
-    while (fgets(line, sizeof(line), stdin) != NULL) {
-        printf("%s", line);
+
+    while(! feof(stdin)) {
+        fgets(line, 1000, stdin);
+        if (! feof(stdin)) {
+            printf("%s<br/>", line);
+        }
     }
-    
-    printf("</body></html>\n");
-    return 0;
 }
