@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Slideshow container */
+.slideshow-container {
+  width: 100vw; /* Full viewport width */
+  max-width: 100%; /* Override previous max-width */
+  position: relative;
+  margin: 0 auto;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Hide overflow content */
+  background-color: #000; /* Black background */
+}
+
+/* Hide the images by default */
+.mySlides,
+.list-item {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Make images consistent size */
+.list-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire container */
+  display: block; /* Remove any extra space below the image */
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%; /* Center vertically */
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  z-index: 10; /* Ensure buttons are above the slides */
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext,
+.numberText {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5; /* Ensure it's above the images */
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+}
+
+/* Caption text */
+.text {
+  display: none; /* Hide this since we're using links instead */
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Style for ordered list */
+.slideshow-container ol {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Container for the dots */
+div[style="text-align: center"] {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  padding: 10px 0;
+}
+
+/* Style for anchor links in the slideshow */
+.list-item a {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  z-index: 6;
+  letter-spacing: 1px;
+  text-decoration: none; /* Remove default underline */
+  transition: background-color 0.3s, color 0.3s;
+  display: block; /* Make the link a block element to be more clickable */
+}
+
+/* Hover effect for links */
+.list-item a:hover,
+.list-item a:focus {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #ff9900; /* Change color on hover */
+  text-decoration: underline;
+}

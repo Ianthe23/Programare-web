@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Anime Carousel</title>
+  </head>
+  <body>
+    <div class="slideshow-container">
+      <ol>
+        <li class="list-item fade">
+          <div class="numberText">1 / 6</div>
+          <img src="img/ancientmagus.png" alt="The Ancient Magus' Bride" />
+          <a
+            href="https://myanimelist.net/anime/35062/Mahoutsukai_no_Yome?q=ancient%20&cat=anime"
+            target="_blank"
+            >The Ancient Magus' Bride</a
+          >
+        </li>
+
+        <li class="list-item fade">
+          <div class="numberText">2 / 6</div>
+          <img src="img/apothecarydiaries.png" alt="The Apothecary Diaries" />
+          <a
+            href="https://myanimelist.net/anime/54492/Kusuriya_no_Hitorigoto?q=apothecary%20&cat=anime"
+            target="_blank"
+            >The Apothecary Diaries</a
+          >
+        </li>
+
+        <li class="list-item fade">
+          <div class="numberText">3 / 6</div>
+          <img src="img/chihayafuru.jpg" alt="Chihayafuru" />
+          <a
+            href="https://myanimelist.net/anime/10800/Chihayafuru?q=chihayafuru&cat=anime"
+            target="_blank"
+            >Chihayafuru</a
+          >
+        </li>
+
+        <li class="list-item fade">
+          <div class="numberText">4 / 6</div>
+          <img src="img/clannad.jpg" alt="Clannad" />
+          <a href="https://myanimelist.net/anime/2167/Clannad" target="_blank"
+            >Clannad</a
+          >
+        </li>
+
+        <li class="list-item fade">
+          <div class="numberText">5 / 6</div>
+          <img src="img/skipandloafer.png" alt="Skip and Loafer" />
+          <a
+            href="https://myanimelist.net/anime/50416/Skip_to_Loafer?q=skip%20and%20loafer&cat=anime"
+            target="_blank"
+            >Skip to Loafer</a
+          >
+        </li>
+
+        <li class="list-item fade">
+          <div class="numberText">6 / 6</div>
+          <img src="img/violetevergarden.jpg" alt="Violet Evergarden" />
+          <a
+            href="https://myanimelist.net/anime/33352/Violet_Evergarden"
+            target="_blank"
+            >Violet Evergarden</a
+          >
+        </li>
+      </ol>
+
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div style="text-align: center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+      <span class="dot" onclick="currentSlide(6)"></span>
+    </div>
+  </body>
+</html>
