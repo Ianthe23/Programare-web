@@ -1,0 +1,24 @@
+.table {
+  width: 350px;
+  border-collapse: collapse;
+  outline: 1px solid black;
+}
+
+.table td {
+  padding-left: 6px;
+}
+
+.table th {
+  text-align: left;
+  padding-left: 6px;
+  font-weight: normal;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+#header-cell {
+  cursor: pointer;
+  font-weight: bold;
+}
