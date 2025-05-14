@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script1.js"></script>
+    <link rel="stylesheet" href="styles1.css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <p>Memory Game</p>
+    </div>
+
+    <div class="container">
+      <div class="game-container">
+        <div class="row">
+          <div id="cell1" class="cell" onclick="selectCell(this)">
+            <p>1</p>
+          </div>
+          <div id="cell2" class="cell" onclick="selectCell(this)">
+            <p>7</p>
+          </div>
+          <div id="cell3" class="cell" onclick="selectCell(this)">
+            <p>2</p>
+          </div>
+          <div id="cell4" class="cell" onclick="selectCell(this)">
+            <p>3</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="cell5" class="cell" onclick="selectCell(this)">
+            <p>7</p>
+          </div>
+          <div id="cell6" class="cell" onclick="selectCell(this)">
+            <p>4</p>
+          </div>
+          <div id="cell7" class="cell" onclick="selectCell(this)">
+            <p>5</p>
+          </div>
+          <div id="cell8" class="cell" onclick="selectCell(this)">
+            <p>3</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="cell9" class="cell" onclick="selectCell(this)">
+            <p>1</p>
+          </div>
+          <div id="cell10" class="cell" onclick="selectCell(this)">
+            <p>4</p>
+          </div>
+          <div id="cell11" class="cell" onclick="selectCell(this)">
+            <p>2</p>
+          </div>
+          <div id="cell12" class="cell" onclick="selectCell(this)">
+            <p>6</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="cell13" class="cell" onclick="selectCell(this)">
+            <p>5</p>
+          </div>
+          <div id="cell14" class="cell" onclick="selectCell(this)">
+            <p>6</p>
+          </div>
+          <div id="cell15" class="cell" onclick="selectCell(this)">
+            <p>0</p>
+          </div>
+          <div id="cell16" class="cell" onclick="selectCell(this)">
+            <p>0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="win-message">
+      <div class="win-content">
+        <h2>Congratulations! 🎉</h2>
+        <button class="play-again" onclick="resetGame()">Play Again</button>
+      </div>
+    </div>
+  </body>
+</html>
