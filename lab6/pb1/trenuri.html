@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rute Trenuri</title>
+    <script>
+      function actualizeazaDestinatii() {
+        const orasPlecare = document.getElementById("plecare").value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          "get_destinatii.php?oras=" + encodeURIComponent(orasPlecare),
+          true
+        );
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            document.getElementById("sosire").innerHTML = xhr.responseText;
+          }
+        };
+        xhr.send();
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>Selecteaza o ruta de tren</h1>
+    <label for="plecare">Plecare:</label>
+    <select id="plecare" onchange="actualizeazaDestinatii()">
+      <option value="">--Selecteaza oras--</option>
+      <option value="Oras1">Oras1</option>
+      <option value="Oras2">Oras2</option>
+      <option value="Oras6">Oras6</option>
+    </select>
+
+    <label for="sosire">Sosire:</label>
+    <select id="sosire">
+      <option value="">--Selecteaza destinatie --</option>
+    </select>
+  </body>
+</html>

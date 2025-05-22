@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Formular</title>
+        <script>
+            window.onload = function () {
+                let formChanged = false;
+                let originalFormData = {};
+                
+                // Clear form fields initially
+                document.getElementById("nume").value = "";
+                document.getElementById("prenume").value = "";
+                document.getElementById("telefon").value = "";
+                document.getElementById("email").value = "";
+
+                // Track form changes
+                const formInputs = ['nume', 'prenume', 'telefon', 'email'];
+                formInputs.forEach(field => {
+                    document.getElementById(field).addEventListener('input', function() {
+                        formChanged = true;
+                    });
+                });
+
+                // Load student IDs using XMLHttpRequest
+                function loadStudentIds() {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'get_students_id.php', true);
+                    
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            const data = JSON.parse(xhr.responseText);
+                            const selectElement = document.getElementById('studentSelect');
+                            
+                            data.ids.forEach(id => {
+                                const option = document.createElement('option');
+                                option.value = id;
+                                option.textContent = id;
+                                selectElement.appendChild(option);
+                            });
+                            
+                            // Check for ID in URL
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const id = urlParams.get('id');
+                            if (id) {
+                                selectElement.value = id;
+                                loadStudentData(id);
+                            }
+                        }
+                    };
+                    
+                    xhr.send();
+                }
+
+                loadStudentIds();
+
+                // Handle selection change
+                document.getElementById('studentSelect').addEventListener('change', function() {
+                    const selectedId = this.value;
+                    
+                    // Check for unsaved changes
+                    if (formChanged) {
+                        const confirmChange = confirm("You have unsaved changes. Do you want to discard them and load a new student?");
+                        if (!confirmChange) {
+                            // Restore the previous selection
+                            this.value = this.dataset.lastSelected || '';
+                            return;
+                        }
+                    }
+                    
+                    // Store the new selection
+                    this.dataset.lastSelected = selectedId;
+                    
+                    if (selectedId) {
+                        // Update URL
+                        const newUrl = window.location.pathname + '?id=' + selectedId;
+                        window.history.pushState({ id: selectedId }, '', newUrl);
+
+                        loadStudentData(selectedId);
+                    }
+                });
+
+                // Load specific student data using XMLHttpRequest
+                function loadStudentData(id) {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', `get_student_formular.php?id=${id}`, true);
+                    
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                const data = JSON.parse(xhr.responseText);
+                                
+                                if (data.student === null) {
+                                    alert('Student not found');
+                                    return;
+                                }
+                                
+                                document.getElementById('nume').value = data.student.nume || '';
+                                document.getElementById('prenume').value = data.student.prenume || '';
+                                document.getElementById('telefon').value = data.student.telefon || '';
+                                document.getElementById('email').value = data.student.email || '';
+                                
+                                // Store original values and reset changed flag
+                                originalFormData = {
+                                    nume: data.student.nume,
+                                    prenume: data.student.prenume,
+                                    telefon: data.student.telefon,
+                                    email: data.student.email
+                                };
+                                formChanged = false;
+                            } else {
+                                alert('Error loading student data. Status: ' + xhr.status);
+                            }
+                        }
+                    };
+                    
+                    xhr.send();
+                }
+
+                // Handle form submission with XMLHttpRequest
+                document.getElementById('updateForm').addEventListener('submit', function(event) {
+                    event.preventDefault(); // prevent default form submission
+
+                    const selectedId = document.getElementById('studentSelect').value;
+                    if (!selectedId) {
+                        alert('Please select a student ID');
+                        return;
+                    }
+
+                    const formData = {
+                        id: selectedId,
+                        nume: document.getElementById('nume').value,
+                        prenume: document.getElementById('prenume').value,
+                        telefon: document.getElementById('telefon').value,
+                        email: document.getElementById('email').value
+                    };
+
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('PUT', 'modify_student.php', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                const response = JSON.parse(xhr.responseText);
+                                if (response.success) {
+                                    alert('Student updated successfully');
+                                    formChanged = false;
+                                    originalFormData = { 
+                                        nume: formData.nume,
+                                        prenume: formData.prenume,
+                                        telefon: formData.telefon,
+                                        email: formData.email
+                                    };
+                                } else {
+                                    alert('Error updating student: ' + (response.error || 'Unknown error'));
+                                }
+                            } else {
+                                alert('Error updating student. Status: ' + xhr.status);
+                            }
+                        }
+                    };
+                    
+                    xhr.send(JSON.stringify(formData));
+                });
+                
+                // Warn when leaving with unsaved changes
+                window.addEventListener('beforeunload', function(e) {
+                    if (formChanged) {
+                        const message = 'You have unsaved changes. Are you sure you want to leave?';
+                        e.returnValue = message;
+                        return message;
+                    }
+                });
+               
+            }
+        </script>
+
+        <body>
+            <h1>Formular</h1>
+            <form id="updateForm" method="put">
+                <label for="studentSelect">Selecteaza ID student:</label>
+                <select id="studentSelect" name="student_id">
+                    <option value="">Select an ID</option>
+                </select><br><br>
+
+                <label for="nume">Nume:</label>
+                <input type="text" id="nume" name="nume"><br><br>
+
+                <label for="prenume">Prenume:</label>
+                <input type="text" id="prenume" name="prenume"><br><br>
+
+                <label for="telefon">Telefon:</label>
+                <input type="text" id="telefon" name="telefon"><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+
+                <input type="submit" value="Update">
+            </form>
+        </body>
+    </head>
+</html>

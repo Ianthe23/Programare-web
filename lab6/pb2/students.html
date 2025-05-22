@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Studenti paginati</title>
+    <style>
+      button:disabled {
+        opacity: 0.5;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        let offset = 0;
+        const limit = 3;
+
+        function loadStudents() {
+          // Create XMLHttpRequest object
+          const xhr = new XMLHttpRequest();
+          
+          // Configure the request
+          xhr.open('GET', `get_students.php?offset=${offset}`, true);
+          
+          // Set up request completion handler
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                // Parse the JSON response
+                const data = JSON.parse(xhr.responseText);
+                
+                // Update the DOM with student data
+                const container = document.getElementById("students-container");
+                container.innerHTML = "";
+
+                data.students.forEach((student) => {
+                  const div = document.createElement("div");
+                  div.innerHTML = `${student.nume} ${student.prenume} - ${student.telefon} - ${student.email}`;
+                  container.appendChild(div);
+                });
+
+                // Update pagination buttons
+                document.getElementById("prevBtn").disabled = offset === 0;
+                document.getElementById("nextBtn").disabled =
+                  offset + limit >= data.total;
+              } else {
+                // Handle error
+                console.error("Error loading students: " + xhr.status);
+                document.getElementById("students-container").innerHTML = 
+                  "Error loading students. Please try again.";
+              }
+            }
+          };
+
+          xhr.send();
+        }
+
+        document.getElementById("prevBtn").addEventListener("click", () => {
+          if (offset >= limit) {
+            offset -= limit;
+            loadStudents();
+          }
+        });
+
+        document.getElementById("nextBtn").addEventListener("click", () => {
+          offset += limit;
+          loadStudents();
+        });
+
+        loadStudents();
+      };
+    </script>
+  </head>
+
+  <body>
+    <h2>Lista studenti</h2>
+    <div id="students-container"></div>
+
+    <button id="prevBtn" disabled>Previous</button>
+    <button id="nextBtn" disabled>Next</button>
+  </body>
+</html>
