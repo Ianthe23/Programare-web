@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <title>X si O</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #game {
+        text-align: center;
+      }
+      #board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-gap: 5px;
+        margin-bottom: 20px;
+      }
+      .cell {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        border: 2px solid #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        cursor: pointer;
+      }
+      #status {
+        margin-top: 20px;
+        min-height: 60px;
+        font-weight: bold;
+      }
+
+      .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      .winner {
+        background-color: #c8e6c9;
+      }
+    </style>
+    <script>
+        window.onload = function() {
+            // Initialize game state
+            let gameBoard = ['-', '-', '-', '-', '-', '-', '-', '-', '-'];
+            let gameActive = true;
+            const statusDisplay = document.getElementById('status');
+            
+            // Update board UI from state
+            function updateBoardUI() {
+                document.querySelectorAll('.cell').forEach((cell, index) => {
+                    if (gameBoard[index] !== '-') {
+                        cell.textContent = gameBoard[index];
+                    } else {
+                        cell.textContent = '';
+                    }
+                });
+            }
+            
+            // Handle cell click
+            function handleCellClick(clickedCellEvent) {
+                if (!gameActive) return;
+                
+                const clickedCell = clickedCellEvent.target;
+                const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+                
+                // Check if cell is already occupied
+                if (gameBoard[clickedCellIndex] !== '-') {
+                    return;
+                }
+                
+                // Mark cell as X (player's move)
+                gameBoard[clickedCellIndex] = 'X';
+                updateBoardUI();
+
+                // Disable board temporarily
+                document.getElementById('board').classList.add('disabled');
+                statusDisplay.textContent = "Computer is thinking...";
+                
+                // Send board state to server
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', `mutare.php?array=${gameBoard.join('')}`, true);
+                
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            
+                            // Update board with server's response
+                            gameBoard = response.board.split('');
+                            updateBoardUI();
+                            
+                            // Check game status
+                            if (response.gameOver) {
+                                gameActive = false;
+                                if (response.isDraw) {
+                                    statusDisplay.textContent = "Game over! It's a draw!";
+                                } else if (response.winner === 'X') {
+                                    statusDisplay.textContent = "Game over! You win!";
+                                } else if (response.winner === 'O') {
+                                    statusDisplay.textContent = "Game over! Computer wins!";
+                                }
+                            } else {
+                                statusDisplay.textContent = "Your turn";
+                            }
+                            
+                            // Re-enable board
+                            document.getElementById('board').classList.remove('disabled');
+                        } catch (error) {
+                            console.error('Error parsing server response:', error);
+                            statusDisplay.textContent = "Error in server response";
+                        }
+                    } else if (xhr.readyState === 4) {
+                        console.error('Request failed:', xhr.status);
+                        statusDisplay.textContent = "Server error";
+                         document.getElementById('board').classList.remove('disabled');
+                    }
+                };
+                
+                xhr.send();
+            }
+            
+            // Reset game
+            function resetGame() {
+                gameBoard = ['-', '-', '-', '-', '-', '-', '-', '-', '-'];
+                gameActive = true;
+                statusDisplay.textContent = "Click a cell to start playing!";
+                updateBoardUI();
+                document.getElementById('board').classList.remove('disabled');
+            }
+            
+            // Set up event listeners
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.addEventListener('click', handleCellClick);
+            });
+            
+            document.getElementById('reset').addEventListener('click', resetGame);
+            
+            // Initial status
+            statusDisplay.textContent = "Click a cell to start playing!";
+        };
+    </script>
+  </head>
+
+  <body>
+    <div id="game">
+      <h1>X and O game</h1>
+      <div id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <div id="status"></div>
+      <button id="reset">Reset Game</button>
+    </div>
+  </body>
+</html>

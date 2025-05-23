@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Tree View Components</title>
+		<style>
+			.tree-view ul {
+				list-style-type: none;
+				padding-left: 20px;
+			}
+			.directory {
+				cursor: pointer;
+				color: #0066cc;
+				font-weight: bold;
+			}
+			.file {
+				cursor: pointer;
+				color: #333;
+			}
+			.caret::before {
+				content: "▶ ";
+				font-size: 10px;
+				color: black;
+			}
+			.caret-down::before {
+				content: "▼ ";
+				font-size: 10px;
+				color: black;
+			}
+			#file-content {
+				border: 1px solid #ccc;
+				padding: 15px;
+				margin-top: 20px;
+				min-height: 200px;
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>File Explorer</h1>
+		<div class="container">
+			<div class="tree-view">
+				<ul id="root-tree"></ul>
+			</div>
+			<div id="file-content">
+				<h3 id="file-name"></h3>
+				<pre id="content-display"></pre>
+			</div>
+		</div>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				loadDirectory(null);
+			});
+
+			function loadDirectory(directoryId) {
+				const xhr = new XMLHttpRequest();
+				xhr.open('GET', 'tree.php?data=' + (directoryId || ''), true);
+
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						const response = xhr.responseText;
+						if (directoryId) {
+							const dirElement = document.getElementById('dir-' + directoryId);
+							const parentLi = dirElement.parentElement;
+
+							let childUl = parentLi.querySelector('ul');
+							if (!childUl) {
+								childUl = document.createElement('ul');
+								parentLi.appendChild(childUl);
+								childUl.innerHTML = response;
+								dirElement.classList.add('caret-down');
+							} else {
+								if (childUl.style.display === 'none') {
+									childUl.style.display = 'block';
+									dirElement.classList.add('caret-down');
+								} else {
+									childUl.style.display = 'none';
+									dirElement.classList.remove('caret-down');
+								}
+							}
+						} else {
+							document.getElementById('root-tree').innerHTML = response;
+						}
+					}
+				};
+
+				xhr.send();
+			}
+
+			function loadFile(fileId, fileName) {
+				const xhr = new XMLHttpRequest();
+				xhr.open('GET', 'get_file.php?id=' + fileId, true);
+
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						const response = xhr.responseText;
+						document.getElementById('file-name').textContent = fileName;
+						document.getElementById('content-display').textContent = response;
+						document.getElementById('file-content').style.display = 'block';
+					}
+				};
+
+				xhr.send();
+			}
+
+			function doSome(nodeId) {
+				loadDirectory(nodeId);
+			}
+		</script>
+	</body>
+</html>
